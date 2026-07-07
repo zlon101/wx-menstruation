@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "record-sheet": "/components/record-sheet/record-sheet"
+  },
+  "navigationBarTitleText": "记录"
+}

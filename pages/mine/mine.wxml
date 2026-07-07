@@ -1,0 +1,60 @@
+<view class="page" style="{{themeStyle}}">
+  <view class="profile-header">
+    <text class="app-name">轻期</text>
+    <text class="app-slogan">纯净、安全、只属于你</text>
+  </view>
+
+  <view class="card menu-card">
+    <view class="list-item" bindtap="goSettings">
+      <text class="list-item-label">周期与预测设置</text>
+      <text class="list-item-arrow">›</text>
+    </view>
+    <view class="list-item" bindtap="goReminder">
+      <text class="list-item-label">提醒设置</text>
+      <text class="list-item-arrow">›</text>
+    </view>
+    <view class="list-item" bindtap="goPrediction">
+      <text class="list-item-label">我们的预测原理</text>
+      <text class="list-item-arrow">›</text>
+    </view>
+    <view class="list-item" bindtap="goPrivacy">
+      <text class="list-item-label">隐私政策</text>
+      <text class="list-item-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="list-item">
+      <view>
+        <text class="list-item-label">模式切换</text>
+        <text class="mode-desc">当前：{{modeText}}</text>
+      </view>
+      <switch
+        checked="{{settings.mode === 'pregnancy'}}"
+        color="{{settings.theme === 'klein' ? '#2563EB' : '#E85D75'}}"
+        bindchange="onModeSwitch"
+      />
+    </view>
+    <text class="mode-tip">备孕模式会高亮排卵日和易孕期</text>
+  </view>
+
+  <view class="card">
+    <text class="section-title">主题配色</text>
+    <view class="theme-grid">
+      <view
+        wx:for="{{themeList}}"
+        wx:key="key"
+        class="theme-item {{item.active ? 'active' : ''}}"
+        data-key="{{item.key}}"
+        bindtap="onThemeSelect"
+      >
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="clear-section">
+    <button class="btn-danger clear-btn" bindtap="onClearData">清除所有数据</button>
+    <text class="clear-tip">所有数据仅保存在本设备，清除后无法恢复</text>
+  </view>
+</view>

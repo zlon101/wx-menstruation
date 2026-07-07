@@ -1,0 +1,39 @@
+<view class="calendar">
+  <view class="calendar-header">
+    <text class="header-month">{{headerLabel}}</text>
+    <view class="today-btn {{isOnToday ? 'today-btn-active' : ''}}" bindtap="onGoToday">
+      <text class="today-btn-text">今天</text>
+    </view>
+  </view>
+
+  <view class="weekday-row">
+    <text wx:for="{{weekdays}}" wx:key="*this" class="weekday">{{item}}</text>
+  </view>
+
+  <swiper
+    class="month-swiper"
+    current="{{swiperIndex}}"
+    duration="300"
+    bindchange="onSwiperChange"
+  >
+    <swiper-item wx:for="{{monthPanels}}" wx:key="label">
+      <view class="days-grid">
+        <view
+          wx:for="{{item.days}}"
+          wx:for-item="day"
+          wx:key="index"
+          class="day-cell {{day.empty ? 'empty' : ''}}"
+          data-date="{{day.dateStr}}"
+          bindtap="onDayTap"
+        >
+          <view
+            wx:if="{{!day.empty}}"
+            class="day-inner {{day.markClass}} {{day.isToday ? 'today' : ''}} {{day.isSelected ? 'selected' : ''}}"
+          >
+            <text class="day-num">{{day.day}}</text>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>

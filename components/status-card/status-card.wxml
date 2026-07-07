@@ -1,0 +1,9 @@
+<view class="status-card">
+  <view class="status-main">
+    <text class="status-title">{{title}}</text>
+    <view wx:if="{{showInfo}}" class="info-btn" bindtap="onInfoTap">
+      <text class="info-icon">ℹ️</text>
+    </view>
+  </view>
+  <text class="status-subtitle">{{subtitle}}</text>
+</view>

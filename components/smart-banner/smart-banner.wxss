@@ -1,0 +1,29 @@
+.smart-banner {
+  display: flex;
+  align-items: center;
+  margin: 0 24rpx 16rpx;
+  padding: 20rpx 24rpx;
+  background: var(--color-primary-light);
+  border-radius: 16rpx;
+}
+
+.banner-content {
+  flex: 1;
+}
+
+.banner-text {
+  font-size: 26rpx;
+  color: var(--color-text-secondary);
+}
+
+.banner-link {
+  font-size: 26rpx;
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.banner-close {
+  padding: 8rpx 16rpx;
+  color: var(--color-text-muted);
+  font-size: 28rpx;
+}

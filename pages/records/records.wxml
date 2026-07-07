@@ -1,0 +1,46 @@
+<view class="page" style="{{themeStyle}}">
+  <view class="toolbar">
+    <view class="toolbar-btn" bindtap="onExport">
+      <text class="toolbar-btn-text">导出</text>
+    </view>
+    <view class="toolbar-btn" bindtap="onImport">
+      <text class="toolbar-btn-text">导入</text>
+    </view>
+  </view>
+
+  <view wx:if="{{records.length === 0}}" class="empty-state">
+    <text class="empty-state-icon">📝</text>
+    <text>还没有记录</text>
+    <text class="text-muted">点击右下角按钮，开始你的第一条记录</text>
+    <text class="text-muted">也可通过导入恢复备份数据</text>
+  </view>
+
+  <view wx:else class="record-list">
+    <view wx:for="{{records}}" wx:key="id" class="record-item card">
+      <view class="record-main">
+        <text class="record-date">{{item.startDate}}</text>
+        <text wx:if="{{item.endDate}}" class="record-range">至 {{item.endDate}}</text>
+        <text class="record-status {{item.endDate ? '' : 'ongoing'}}">{{item.statusText}}</text>
+      </view>
+      <view class="record-delete" data-id="{{item.id}}" bindtap="onDelete">
+        <text>删除</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="fab-wrap" bindtap="onAddTap">
+    <view class="fab">
+      <text class="fab-icon">+</text>
+      <text class="fab-label">记一笔</text>
+    </view>
+  </view>
+
+  <record-sheet
+    visible="{{showRecordSheet}}"
+    has-active-period="{{hasActivePeriod}}"
+    selected-date="{{selectedDate}}"
+    bind:close="onRecordClose"
+    bind:start="onPeriodStart"
+    bind:end="onPeriodEnd"
+  />
+</view>

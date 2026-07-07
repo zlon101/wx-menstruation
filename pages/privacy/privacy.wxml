@@ -1,0 +1,36 @@
+<view class="page" style="{{themeStyle}}">
+  <view class="card">
+    <text class="privacy-title">隐私政策</text>
+    <text class="privacy-date">更新日期：2026年7月</text>
+
+    <view class="privacy-section">
+      <text class="section-title">数据存储</text>
+      <text class="section-text">本产品所有核心数据仅保存在您的设备本地，通过微信小程序 Storage 接口存储。我们不会将您的经期记录、周期设置等任何个人健康数据上传至云端服务器。</text>
+    </view>
+
+    <view class="privacy-section">
+      <text class="section-title">数据使用</text>
+      <text class="section-text">您的数据仅用于本小程序内的周期预测和统计展示，绝不上传云端，绝不用于任何第三方广告分析或商业用途。</text>
+    </view>
+
+    <view class="privacy-section">
+      <text class="section-title">登录与授权</text>
+      <text class="section-text">本小程序不强制要求微信授权登录。若您开启提醒功能，将请求「添加到日历」权限，并在您每次记录经期开始时，把预测提醒写入手机系统日历；经期记录本身仍只保存在本地。</text>
+    </view>
+
+    <view class="privacy-section">
+      <text class="section-title">数据删除</text>
+      <text class="section-text">您可以在「我的」页面随时一键清除所有本地数据。清除后数据将无法恢复。</text>
+    </view>
+
+    <view class="privacy-section">
+      <text class="section-title">免责声明</text>
+      <text class="section-text">本小程序提供的经期预测和排卵期计算仅供参考，不构成医疗建议。如有健康问题，请咨询专业医疗机构。</text>
+    </view>
+  </view>
+
+  <view class="action-bar" wx:if="{{isFirstLaunch}}">
+    <button class="btn-outline decline-btn" bindtap="onDecline">不同意</button>
+    <button class="btn-primary accept-btn" bindtap="onAccept">同意并继续</button>
+  </view>
+</view>

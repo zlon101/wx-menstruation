@@ -1,0 +1,43 @@
+.page {
+  min-height: 100vh;
+  padding: 24rpx;
+}
+
+.reminder-desc {
+  display: block;
+  font-size: 24rpx;
+  color: var(--color-text-muted);
+  margin-top: 4rpx;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid var(--color-border);
+}
+
+.setting-label {
+  font-size: 28rpx;
+  color: var(--color-text-secondary);
+}
+
+.picker-value {
+  font-size: 28rpx;
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.tip-box {
+  margin: 24rpx;
+  padding: 24rpx;
+  background: #F3F4F6;
+  border-radius: 16rpx;
+}
+
+.tip-text {
+  font-size: 26rpx;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}

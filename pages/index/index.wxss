@@ -1,0 +1,59 @@
+.page {
+  min-height: 100vh;
+  padding-bottom: calc(160rpx + env(safe-area-inset-bottom));
+}
+
+.calendar-card {
+  margin-top: 0;
+  padding: 24rpx 16rpx 32rpx;
+}
+
+.date-detail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  margin-top: 24rpx;
+  padding-top: 24rpx;
+  border-top: 1rpx solid var(--color-border);
+}
+
+.date-detail-label {
+  font-size: 26rpx;
+  color: var(--color-text-muted);
+}
+
+.date-detail-text {
+  font-size: 28rpx;
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.record-fab-wrap {
+  position: fixed;
+  bottom: calc(130rpx + env(safe-area-inset-bottom));
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 100;
+}
+
+.record-fab {
+  width: 320rpx;
+  height: 96rpx;
+  background: var(--color-primary);
+  color: #FFFFFF;
+  border-radius: 48rpx;
+  font-size: 34rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 32rpx rgba(232, 93, 117, 0.35);
+  border: none;
+}
+
+.record-fab::after {
+  border: none;
+}

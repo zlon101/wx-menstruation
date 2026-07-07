@@ -1,0 +1,111 @@
+.page {
+  min-height: 100vh;
+  padding-bottom: calc(160rpx + env(safe-area-inset-bottom));
+}
+
+.toolbar {
+  display: flex;
+  gap: 20rpx;
+  padding: 24rpx 24rpx 0;
+}
+
+.toolbar-btn {
+  flex: 1;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 36rpx;
+  background: var(--color-primary-light);
+  border: 2rpx solid transparent;
+}
+
+.toolbar-btn-text {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.record-list {
+  padding: 8rpx 0;
+}
+
+.record-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16rpx 24rpx;
+  padding: 28rpx 32rpx;
+}
+
+.record-main {
+  flex: 1;
+}
+
+.record-date {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.record-range {
+  display: block;
+  font-size: 26rpx;
+  color: var(--color-text-secondary);
+  margin-top: 4rpx;
+}
+
+.record-status {
+  display: inline-block;
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: var(--color-text-muted);
+  background: #F3F4F6;
+  padding: 4rpx 16rpx;
+  border-radius: 8rpx;
+}
+
+.record-status.ongoing {
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.record-delete {
+  padding: 16rpx;
+  color: var(--color-danger);
+  font-size: 26rpx;
+}
+
+.fab-wrap {
+  position: fixed;
+  bottom: calc(130rpx + env(safe-area-inset-bottom));
+  right: 32rpx;
+  z-index: 100;
+}
+
+.fab {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  height: 96rpx;
+  padding: 0 36rpx 0 28rpx;
+  border-radius: 48rpx;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-soft) 100%);
+  box-shadow: 0 12rpx 40rpx rgba(232, 93, 117, 0.38);
+}
+
+.fab-icon {
+  font-size: 40rpx;
+  font-weight: 300;
+  color: #FFFFFF;
+  line-height: 1;
+  margin-top: -4rpx;
+}
+
+.fab-label {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+  letter-spacing: 1rpx;
+}

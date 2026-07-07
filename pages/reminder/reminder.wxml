@@ -1,0 +1,41 @@
+<view class="page" style="{{themeStyle}}">
+  <view class="card">
+    <view class="list-item">
+      <view>
+        <text class="list-item-label">经期来临提醒</text>
+        <text class="reminder-desc">通过系统日历，在经期前 1-2 天提醒</text>
+      </view>
+      <switch
+        checked="{{reminders.periodEnabled}}"
+        bindchange="onPeriodToggle"
+      />
+    </view>
+
+    <view wx:if="{{reminders.periodEnabled}}" class="setting-item">
+      <text class="setting-label">提前提醒</text>
+      <picker
+        mode="selector"
+        range="{{daysBeforeOptions}}"
+        value="{{daysBeforeIndex}}"
+        bindchange="onDaysBeforeChange"
+      >
+        <view class="picker-value">提前 {{reminders.periodDaysBefore || 2}} 天 ›</view>
+      </picker>
+    </view>
+
+    <view class="list-item">
+      <view>
+        <text class="list-item-label">排卵日提醒</text>
+        <text class="reminder-desc">通过系统日历，在预计排卵日当天提醒</text>
+      </view>
+      <switch
+        checked="{{reminders.ovulationEnabled}}"
+        bindchange="onOvulationToggle"
+      />
+    </view>
+  </view>
+
+  <view class="tip-box">
+    <text class="tip-text">提醒由手机系统日历发出，无需联网。每次记录「经期开始」时，会根据最新预测自动添加日历事件。预测变化后，旧日程需在系统日历应用中手动删除。</text>
+  </view>
+</view>

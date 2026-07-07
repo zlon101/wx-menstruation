@@ -1,0 +1,29 @@
+<view wx:if="{{visible}}" class="sheet-mask" bindtap="onMaskTap">
+  <view class="sheet-panel" catchtap="preventBubble">
+    <view class="sheet-handle"></view>
+    <text class="sheet-title">记一笔</text>
+    <text class="sheet-date">记录日期：{{recordDate}}</text>
+
+    <view class="action-list">
+      <button
+        wx:if="{{!hasActivePeriod}}"
+        class="action-btn start-btn"
+        bindtap="onStart"
+      >
+        <text class="action-icon">🩸</text>
+        <text class="action-text">大姨妈来了</text>
+      </button>
+
+      <button
+        wx:if="{{hasActivePeriod}}"
+        class="action-btn end-btn"
+        bindtap="onEnd"
+      >
+        <text class="action-icon">✨</text>
+        <text class="action-text">大姨妈走了</text>
+      </button>
+    </view>
+
+    <button class="cancel-btn" bindtap="onClose">取消</button>
+  </view>
+</view>

@@ -1,0 +1,22 @@
+<view class="page" style="{{themeStyle}}">
+  <view class="card section">
+    <text class="section-title">我们如何预测你的经期？</text>
+    <text class="section-text">下一次经期是基于「最近一次真实记录的开始日 + 你的平均周期长度」计算得出的。你每一次的真实记录，都会让预测更贴近你的真实情况。</text>
+  </view>
+
+  <view class="card section">
+    <text class="section-title">默认值的秘密</text>
+    <text class="section-text">在还不了解你之前，我们默认采用 28 天周期间隔和 5 天经期时长。这不是对你的定论，只是一个温柔的起点。你可以在设置中手动调整，也可以通过坚持记录让系统自动学习你的规律。</text>
+  </view>
+
+  <view class="card section">
+    <text class="section-title">越用越懂你</text>
+    <text class="section-text">当你连续记录满 3 个月后，轻期会启动智能加权算法——近期记录的权重更高，预测也会越来越准。你不需要频繁手动修改，轻期会默默帮你算好。</text>
+  </view>
+
+  <view class="card section">
+    <text class="section-title">关于排卵期的计算</text>
+    <text class="section-text">排卵日按基础医学逻辑，从下一次预计经期开始日往前推 14 天计算。易孕期为排卵日前 5 天至后 4 天，共 10 天。</text>
+    <text class="section-warn">⚠️ 此预测仅供参考，不建议作为严格避孕依据。如有备孕或避孕需求，请咨询专业医生。</text>
+  </view>
+</view>

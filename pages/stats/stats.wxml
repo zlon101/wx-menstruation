@@ -1,0 +1,49 @@
+<view class="page" style="{{themeStyle}}">
+  <view wx:if="{{!hasData}}" class="empty-state">
+    <text class="empty-state-icon">📊</text>
+    <text>数据还不够哦</text>
+    <text class="text-muted">至少记录 2 次经期后，这里会展示趋势分析</text>
+  </view>
+
+  <block wx:else>
+    <view class="summary-row">
+      <view class="summary-card card">
+        <text class="summary-value">{{stats.avgCycleLength}}</text>
+        <text class="summary-label">平均周期（天）</text>
+      </view>
+      <view class="summary-card card">
+        <text class="summary-value">{{stats.avgPeriodLength}}</text>
+        <text class="summary-label">平均经期（天）</text>
+      </view>
+    </view>
+
+    <view class="card">
+      <text class="section-title">近 6 个月周期长度趋势</text>
+      <line-chart
+        data="{{chartData}}"
+        field="cycleLength"
+        title=""
+        color="{{themeStyle ? '' : '#E85D75'}}"
+      />
+    </view>
+
+    <view class="card">
+      <text class="section-title">近 6 个月经期长度趋势</text>
+      <line-chart
+        data="{{chartData}}"
+        field="periodLength"
+        title=""
+        color="#7C6CF0"
+      />
+    </view>
+
+    <view class="card tip-card">
+      <text class="tip-text" wx:if="{{stats.useWeighted}}">
+        ✨ 已连续记录 3 个月以上，轻期正在使用智能加权算法为你预测
+      </text>
+      <text class="tip-text" wx:else>
+        坚持记录满 3 个月，系统将自动启用更精准的加权预测算法
+      </text>
+    </view>
+  </block>
+</view>

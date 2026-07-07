@@ -1,0 +1,31 @@
+<view class="page" style="{{themeStyle}}">
+  <view class="card">
+    <view class="setting-item">
+      <text class="setting-label">我的经期长度通常是</text>
+      <picker
+        mode="selector"
+        range="{{periodRange}}"
+        value="{{periodLength - 2}}"
+        bindchange="onPeriodChange"
+      >
+        <view class="picker-value">{{periodLength}} 天 ›</view>
+      </picker>
+    </view>
+
+    <view class="setting-item">
+      <text class="setting-label">两次经期间隔通常是</text>
+      <picker
+        mode="selector"
+        range="{{cycleRange}}"
+        value="{{cycleLength - 20}}"
+        bindchange="onCycleChange"
+      >
+        <view class="picker-value">{{cycleLength}} 天 ›</view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="tip-box">
+    <text class="tip-text">连续记录 3 个月以上，轻期将自动为您测算最准确的平均周期，无需频繁手动修改。</text>
+  </view>
+</view>

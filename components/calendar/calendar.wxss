@@ -1,0 +1,148 @@
+.calendar {
+  padding: 0 16rpx;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8rpx 20rpx;
+}
+
+.header-month {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.today-btn {
+  padding: 10rpx 28rpx;
+  border-radius: 32rpx;
+  background: var(--color-primary-light);
+  border: 2rpx solid transparent;
+}
+
+.today-btn-active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.today-btn-text {
+  font-size: 26rpx;
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.today-btn-active .today-btn-text {
+  color: #FFFFFF;
+}
+
+.weekday-row {
+  display: flex;
+  margin-bottom: 16rpx;
+}
+
+.weekday {
+  flex: 1;
+  text-align: center;
+  font-size: 24rpx;
+  color: var(--color-text-muted);
+}
+
+.month-swiper {
+  height: 520rpx;
+}
+
+.days-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.day-cell {
+  width: 14.2857%;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.day-cell.empty {
+  pointer-events: none;
+}
+
+.day-inner {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.day-num {
+  font-size: 28rpx;
+  color: var(--color-text);
+  position: relative;
+  z-index: 1;
+}
+
+.day-inner.today .day-num {
+  font-weight: 600;
+}
+
+.day-inner.selected {
+  background: var(--color-primary-light);
+}
+
+.day-inner.real-period {
+  background: var(--color-period);
+}
+
+.day-inner.real-period .day-num {
+  color: #FFFFFF;
+}
+
+.day-inner.predict-period {
+  background: transparent;
+  border: 2rpx dashed var(--color-period-predict);
+}
+
+.day-inner.predict-period .day-num {
+  color: var(--color-period);
+}
+
+.day-inner.ovulation {
+  background: var(--color-ovulation);
+}
+
+.day-inner.ovulation .day-num {
+  color: #FFFFFF;
+  font-size: 22rpx;
+}
+
+.day-inner.ovulation-dim::after,
+.day-inner.fertile-dim::after {
+  content: '';
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: var(--color-ovulation);
+  opacity: 0.4;
+  position: absolute;
+  bottom: 6rpx;
+}
+
+.day-inner.fertile {
+  background: var(--color-fertile);
+  opacity: 0.7;
+}
+
+.day-inner.fertile .day-num {
+  color: #FFFFFF;
+  font-size: 24rpx;
+}
+
+.day-inner.fertile-dim::after {
+  background: var(--color-fertile);
+}

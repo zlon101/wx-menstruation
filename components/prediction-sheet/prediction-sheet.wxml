@@ -1,0 +1,30 @@
+<view wx:if="{{visible && mode === 'sheet'}}" class="sheet-mask" bindtap="onMaskTap">
+  <view class="sheet-panel" catchtap="preventBubble">
+    <view class="sheet-handle"></view>
+    <text class="sheet-title">我们的预测原理</text>
+
+    <scroll-view scroll-y class="content-scroll">
+      <view class="section">
+        <text class="section-title">我们如何预测你的经期？</text>
+        <text class="section-text">下一次经期是基于「最近一次真实记录的开始日 + 你的平均周期长度」计算得出的。记录越多，预测越贴近你的真实情况。</text>
+      </view>
+
+      <view class="section">
+        <text class="section-title">默认值的秘密</text>
+        <text class="section-text">在还不了解你之前，我们默认采用 28 天周期间隔和 5 天经期时长。你可以在「我的 → 周期与预测设置」中手动调整，也可以通过坚持记录让系统自动学习。</text>
+      </view>
+
+      <view class="section">
+        <text class="section-title">越用越懂你</text>
+        <text class="section-text">当你连续记录满 3 个月后，轻期会启动智能算法，根据你的真实记录进行加权计算，近期数据的权重更高，预测也会越来越准。</text>
+      </view>
+
+      <view class="section">
+        <text class="section-title">关于排卵期的计算</text>
+        <text class="section-text">排卵日按医学常识，从下一次预计经期开始日往前推 14 天计算。易孕期为排卵日前 5 天至后 4 天，共 10 天。此预测仅供参考，不建议作为严格避孕依据。</text>
+      </view>
+    </scroll-view>
+
+    <button class="close-btn" bindtap="onClose">我知道了</button>
+  </view>
+</view>

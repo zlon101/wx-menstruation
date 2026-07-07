@@ -1,0 +1,9 @@
+<view wx:if="{{visible}}" class="smart-banner">
+  <view class="banner-content" bindtap="onGoSettings">
+    <text class="banner-text">当前使用默认28天周期预测。</text>
+    <text class="banner-link">👉 去设置真实周期</text>
+  </view>
+  <view class="banner-close" bindtap="onClose">
+    <text>✕</text>
+  </view>
+</view>

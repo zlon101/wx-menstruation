@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "status-card": "/components/status-card/status-card",
+    "calendar": "/components/calendar/calendar",
+    "smart-banner": "/components/smart-banner/smart-banner",
+    "record-sheet": "/components/record-sheet/record-sheet",
+    "prediction-sheet": "/components/prediction-sheet/prediction-sheet"
+  },
+  "navigationBarTitleText": "轻期"
+}

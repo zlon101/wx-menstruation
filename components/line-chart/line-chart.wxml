@@ -1,0 +1,9 @@
+<view class="chart-wrap">
+  <text wx:if="{{title}}" class="chart-title">{{title}}</text>
+  <canvas
+    canvas-id="lineChart"
+    class="chart-canvas"
+    style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;"
+  ></canvas>
+  <view wx:if="{{!data.length}}" class="chart-empty">暂无足够数据</view>
+</view>

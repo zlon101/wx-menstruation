@@ -1,0 +1,77 @@
+.page {
+  min-height: 100vh;
+  padding-bottom: calc(120rpx + env(safe-area-inset-bottom));
+}
+
+.profile-header {
+  padding: 48rpx 32rpx 24rpx;
+}
+
+.app-name {
+  display: block;
+  font-size: 48rpx;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.app-slogan {
+  display: block;
+  font-size: 26rpx;
+  color: var(--color-text-secondary);
+  margin-top: 8rpx;
+}
+
+.menu-card {
+  padding: 8rpx 32rpx;
+}
+
+.mode-desc {
+  display: block;
+  font-size: 24rpx;
+  color: var(--color-text-muted);
+  margin-top: 4rpx;
+}
+
+.mode-tip {
+  display: block;
+  font-size: 24rpx;
+  color: var(--color-text-muted);
+  padding-bottom: 16rpx;
+}
+
+.theme-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-top: 16rpx;
+}
+
+.theme-item {
+  padding: 16rpx 28rpx;
+  border-radius: 32rpx;
+  background: #F3F4F6;
+  font-size: 26rpx;
+  color: var(--color-text-secondary);
+}
+
+.theme-item.active {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.clear-section {
+  padding: 48rpx 32rpx;
+  text-align: center;
+}
+
+.clear-btn {
+  width: 100%;
+}
+
+.clear-tip {
+  display: block;
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: var(--color-text-muted);
+}

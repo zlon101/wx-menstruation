@@ -1,0 +1,50 @@
+<view class="page" style="{{themeStyle}}">
+  <status-card
+    title="{{status.title}}"
+    subtitle="{{status.subtitle}}"
+    show-info="{{status.showInfo}}"
+    bind:infotap="onInfoTap"
+  />
+
+  <view class="calendar-card card">
+    <calendar
+      marks="{{marks}}"
+      year="{{calendarYear}}"
+      month="{{calendarMonth}}"
+      mode="{{mode}}"
+      selected-date="{{selectedDate}}"
+      bind:monthchange="onMonthChange"
+      bind:daytap="onDayTap"
+      bind:gotoday="onGoToday"
+    />
+
+    <smart-banner
+      visible="{{showSmartBanner}}"
+      bind:close="onBannerClose"
+      bind:gosettings="onBannerGoSettings"
+    />
+
+    <view wx:if="{{dateDetail}}" class="date-detail">
+      <text class="date-detail-label">{{selectedDate}}</text>
+      <text class="date-detail-text">{{dateDetail}}</text>
+    </view>
+  </view>
+
+  <view class="record-fab-wrap">
+    <button class="record-fab" bindtap="onRecordTap">记一笔</button>
+  </view>
+
+  <record-sheet
+    visible="{{showRecordSheet}}"
+    has-active-period="{{hasActivePeriod}}"
+    selected-date="{{selectedDate}}"
+    bind:close="onRecordClose"
+    bind:start="onPeriodStart"
+    bind:end="onPeriodEnd"
+  />
+
+  <prediction-sheet
+    visible="{{showPredictionSheet}}"
+    bind:close="onPredictionClose"
+  />
+</view>
