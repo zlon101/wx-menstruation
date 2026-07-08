@@ -34,7 +34,7 @@ Page({
       }
       wx.showModal({
         title: '系统日历提醒',
-        content: '开启后，每次记录经期开始时，将自动把下次经期提醒添加到手机系统日历（经期前 1-2 天通知您）。',
+        content: '开启后，每次记录经期开始时，将自动在下次经期前 1-2 天的 18:00 添加一条系统日历提醒。',
         showCancel: false,
         success: () => {
           this.saveReminder({ periodEnabled: true })
@@ -55,7 +55,7 @@ Page({
       }
       wx.showModal({
         title: '排卵日日历提醒',
-        content: '开启后，每次记录经期开始时，将自动把预计排卵日添加到手机系统日历。',
+        content: '开启后，每次记录经期开始时，将自动在预计排卵日当天 18:00 添加一条系统日历提醒。',
         showCancel: false,
         success: () => {
           this.saveReminder({ ovulationEnabled: true })

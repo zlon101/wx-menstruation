@@ -3,7 +3,7 @@
     <view class="list-item">
       <view>
         <text class="list-item-label">经期来临提醒</text>
-        <text class="reminder-desc">通过系统日历，在经期前 1-2 天提醒</text>
+        <text class="reminder-desc">通过系统日历，在经期前 1-2 天的 18:00 提醒一次</text>
       </view>
       <switch
         checked="{{reminders.periodEnabled}}"
@@ -26,7 +26,7 @@
     <view class="list-item">
       <view>
         <text class="list-item-label">排卵日提醒</text>
-        <text class="reminder-desc">通过系统日历，在预计排卵日当天提醒</text>
+        <text class="reminder-desc">通过系统日历，在预计排卵日当天 18:00 提醒一次</text>
       </view>
       <switch
         checked="{{reminders.ovulationEnabled}}"
@@ -36,6 +36,6 @@
   </view>
 
   <view class="tip-box">
-    <text class="tip-text">提醒由手机系统日历发出，无需联网。每次记录「经期开始」时，会根据最新预测自动添加日历事件。预测变化后，旧日程需在系统日历应用中手动删除。</text>
+    <text class="tip-text">提醒由手机系统日历发出，无需联网。每次记录「经期开始」时，会根据最新预测自动添加单次提醒事件。预测变化后，旧日程需在系统日历应用中手动删除。</text>
   </view>
 </view>

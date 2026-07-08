@@ -6,6 +6,33 @@ function dateToUnix(dateStr) {
   return Math.floor(new Date(parts[0], parts[1] - 1, parts[2]).getTime() / 1000)
 }
 
+function dateToUnixAt(dateStr, hour, minute) {
+  const parts = dateStr.split('-').map(Number)
+  return Math.floor(new Date(parts[0], parts[1] - 1, parts[2], hour, minute, 0).getTime() / 1000)
+}
+
+function addDays(dateStr, days) {
+  const parts = dateStr.split('-').map(Number)
+  const date = new Date(parts[0], parts[1] - 1, parts[2])
+  date.setDate(date.getDate() + days)
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
+}
+
+function compareDate(a, b) {
+  return dateToUnix(a) - dateToUnix(b)
+}
+
+function todayStr() {
+  const now = new Date()
+  const year = now.getFullYear()
+  const month = String(now.getMonth() + 1).padStart(2, '0')
+  const day = String(now.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
+}
+
 function canUseCalendar() {
   return typeof wx.addPhoneCalendar === 'function'
 }
@@ -44,24 +71,29 @@ function addPeriodReminder(periods, settings) {
     return Promise.resolve({ skipped: true, type: 'period', reason: 'no_prediction' })
   }
 
-  const dedupeKey = `period:${prediction.start}`
+  const daysBefore = reminders.periodDaysBefore || 2
+  const reminderDate = addDays(prediction.start, -daysBefore)
+  if (compareDate(reminderDate, todayStr()) < 0) {
+    return Promise.resolve({ skipped: true, type: 'period', reason: 'expired' })
+  }
+
+  const dedupeKey = `period:${prediction.start}:before:${daysBefore}`
   if (hasAddedKey(reminders.calendarAddedKeys, dedupeKey)) {
     return Promise.resolve({ skipped: true, type: 'period', reason: 'duplicate' })
   }
 
-  const daysBefore = reminders.periodDaysBefore || 2
   return addPhoneCalendarEvent({
     title: '姨妈快造访啦',
-    description: '轻期预测：记得准备卫生巾哦',
-    startTime: dateToUnix(prediction.start),
-    endTime: dateToUnix(prediction.end),
-    allDay: true,
+    description: `轻期提醒：预计 ${prediction.start} 来临，记得提前准备`,
+    startTime: dateToUnixAt(reminderDate, 18, 0),
+    endTime: dateToUnixAt(reminderDate, 18, 5),
+    allDay: false,
     alarm: true,
-    alarmOffset: daysBefore * 86400
+    alarmOffset: 0
   })
     .then(() => {
       markAddedKey(reminders, dedupeKey)
-      return { success: true, type: 'period', date: prediction.start }
+      return { success: true, type: 'period', date: reminderDate }
     })
     .catch((err) => ({ success: false, type: 'period', err }))
 }
@@ -77,6 +109,10 @@ function addOvulationReminder(periods, settings) {
     return Promise.resolve({ skipped: true, type: 'ovulation', reason: 'no_prediction' })
   }
 
+  if (compareDate(ovInfo.ovulationDay, todayStr()) < 0) {
+    return Promise.resolve({ skipped: true, type: 'ovulation', reason: 'expired' })
+  }
+
   const dedupeKey = `ovulation:${ovInfo.ovulationDay}`
   if (hasAddedKey(reminders.calendarAddedKeys, dedupeKey)) {
     return Promise.resolve({ skipped: true, type: 'ovulation', reason: 'duplicate' })
@@ -85,8 +121,9 @@ function addOvulationReminder(periods, settings) {
   return addPhoneCalendarEvent({
     title: '预计排卵日',
     description: '轻期预测，仅供参考',
-    startTime: dateToUnix(ovInfo.ovulationDay),
-    allDay: true,
+    startTime: dateToUnixAt(ovInfo.ovulationDay, 18, 0),
+    endTime: dateToUnixAt(ovInfo.ovulationDay, 18, 5),
+    allDay: false,
     alarm: true,
     alarmOffset: 0
   })
