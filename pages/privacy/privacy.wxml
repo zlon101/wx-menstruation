@@ -15,7 +15,8 @@
 
     <view class="privacy-section">
       <text class="section-title">登录与授权</text>
-      <text class="section-text">本小程序不强制要求微信授权登录。若您开启提醒功能，将请求「添加到日历」权限，并在您每次记录经期开始时，把预测提醒写入手机系统日历；经期记录本身仍只保存在本地。</text>
+      <text class="section-text">本小程序不强制要求微信授权登录。若您开启提醒功能，将请求「添加到日历」权限，并在您每次记录经期开始时，把预测提醒写入手机系统日历；经期记录本身仍只保存在本地。该功能需您同意微信平台的{{privacyContractName}}。</text>
+      <text wx:if="{{showPrivacyContractLink}}" class="privacy-contract-link" bindtap="onOpenPrivacyContract">查看微信平台隐私保护指引</text>
     </view>
 
     <view class="privacy-section">

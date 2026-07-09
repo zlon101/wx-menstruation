@@ -1,16 +1,23 @@
 const { getSettings, saveSettings, getThemeStyle } = require('../../utils/storage')
+const { getPrivacyContractName, openPrivacyContract } = require('../../utils/privacy')
 
 Page({
   data: {
     themeStyle: '',
-    isFirstLaunch: false
+    isFirstLaunch: false,
+    privacyContractName: '《用户隐私保护指引》',
+    showPrivacyContractLink: false
   },
 
   onLoad(options) {
     const settings = getSettings()
     this.setData({
       themeStyle: getThemeStyle(settings.theme),
-      isFirstLaunch: options.firstLaunch === '1'
+      isFirstLaunch: options.firstLaunch === '1',
+      showPrivacyContractLink: typeof wx.openPrivacyContract === 'function'
+    })
+    getPrivacyContractName().then((name) => {
+      this.setData({ privacyContractName: name })
     })
   },
 
@@ -33,5 +40,9 @@ Page({
     } else {
       wx.navigateBack()
     }
+  },
+
+  onOpenPrivacyContract() {
+    openPrivacyContract()
   }
 })

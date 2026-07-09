@@ -134,19 +134,72 @@ function addOvulationReminder(periods, settings) {
     .catch((err) => ({ success: false, type: 'ovulation', err }))
 }
 
-function isAuthError(err) {
-  const msg = (err && err.errMsg) || (err && err.message) || ''
-  return msg.indexOf('auth') !== -1 || msg.indexOf('authorize') !== -1 || msg.indexOf('permission') !== -1
+function getErrorMessage(err) {
+  if (!err) {
+    return '未知错误'
+  }
+  const msg = err.errMsg || err.message || String(err)
+  const errno = err.errno != null ? ` (errno: ${err.errno})` : ''
+  return `${msg}${errno}`
 }
 
-function showAuthDeniedModal() {
+function isAuthError(err) {
+  const msg = (err && err.errMsg) || (err && err.message) || ''
+  return msg.indexOf('auth') !== -1 ||
+    msg.indexOf('authorize') !== -1 ||
+    msg.indexOf('permission') !== -1
+}
+
+function isPrivacyAgreementError(err) {
+  const msg = (err && err.errMsg) || (err && err.message) || ''
+  const errno = err && err.errno
+  return errno === 112 ||
+    errno === 101100 ||
+    errno === 101102 ||
+    msg.indexOf('privacy agreement') !== -1 ||
+    msg.indexOf('privacy permission') !== -1
+}
+
+function showAuthDeniedModal(failed) {
+  const details = Array.isArray(failed) && failed.length
+    ? failed.map((r) => {
+      const label = r.type === 'period' ? '经期提醒' : '排卵提醒'
+      return `${label}：${getErrorMessage(r.err)}`
+    }).join('\n') + '\n\n'
+    : ''
+
   wx.showModal({
     title: '需要日历权限',
-    content: '请在设置中允许「添加到日历」，以便接收经期与排卵提醒',
+    content: `${details}请在设置中允许「添加到日历」，以便接收经期与排卵提醒`,
     confirmText: '去设置',
     success: (res) => {
       if (res.confirm) wx.openSetting()
     }
+  })
+}
+
+function showPrivacyAgreementModal(failed) {
+  const details = failed.map((r) => {
+    const label = r.type === 'period' ? '经期提醒' : '排卵提醒'
+    return `${label}：${getErrorMessage(r.err)}`
+  }).join('\n')
+  wx.showModal({
+    title: '隐私协议未授权',
+    content: `${details}\n\n请在微信公众平台完善「日历（仅写入）」隐私声明，并同意小程序隐私保护指引后重试。`,
+    showCancel: false
+  })
+}
+
+function showCalendarFailureModal(failed) {
+  const details = failed.map((r) => {
+    const label = r.type === 'period' ? '经期提醒' : '排卵提醒'
+    return `${label}：${getErrorMessage(r.err)}`
+  }).join('\n')
+
+  wx.showModal({
+    title: '添加日历提醒失败',
+    content: details,
+    showCancel: false
   })
 }
 
@@ -168,10 +221,12 @@ function syncCalendarsAfterPeriodStart(periods, settings) {
   ]).then((results) => {
     const added = results.filter(r => r.success)
     const failed = results.filter(r => r.success === false && r.err)
-    if (failed.some(r => isAuthError(r.err))) {
-      showAuthDeniedModal()
-    } else if (failed.length > 0 && added.length === 0) {
-      wx.showToast({ title: '添加日历提醒失败', icon: 'none' })
+    if (failed.some(r => isPrivacyAgreementError(r.err))) {
+      showPrivacyAgreementModal(failed.filter(r => isPrivacyAgreementError(r.err)))
+    } else if (failed.some(r => isAuthError(r.err))) {
+      showAuthDeniedModal(failed.filter(r => isAuthError(r.err)))
+    } else if (failed.length > 0) {
+      showCalendarFailureModal(failed)
     } else if (added.length > 0) {
       const labels = added.map(r =>
         r.type === 'period' ? '经期提醒' : '排卵提醒'

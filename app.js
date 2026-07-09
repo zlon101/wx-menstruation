@@ -1,4 +1,5 @@
 const { getSettings, getThemeVars } = require('./utils/storage')
+const { initPrivacyAuthorization } = require('./utils/privacy')
 
 App({
   globalData: {
@@ -8,6 +9,7 @@ App({
 
   onLaunch() {
     this.applyTheme()
+    initPrivacyAuthorization()
     this.checkPrivacyOnLaunch()
   },
 

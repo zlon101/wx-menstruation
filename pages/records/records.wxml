@@ -43,4 +43,6 @@
     bind:start="onPeriodStart"
     bind:end="onPeriodEnd"
   />
+
+  <privacy-popup />
 </view>

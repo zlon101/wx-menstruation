@@ -47,4 +47,6 @@
     visible="{{showPredictionSheet}}"
     bind:close="onPredictionClose"
   />
+
+  <privacy-popup />
 </view>

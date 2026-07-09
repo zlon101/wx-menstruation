@@ -1,0 +1,18 @@
+<view wx:if="{{visible}}" class="privacy-mask" bindtap="onDisagree">
+  <view class="privacy-panel" catchtap="preventBubble">
+    <text class="privacy-title">隐私保护提示</text>
+    <text class="privacy-text">
+      在使用日历提醒前，请先阅读并同意{{privacyContractName}}。我们仅在您记录经期时，向系统日历写入提醒事件，不会上传您的经期记录。
+    </text>
+    <text class="privacy-link" bindtap="onOpenPrivacyContract">查看完整隐私指引</text>
+    <view class="privacy-actions">
+      <button class="btn-outline decline-btn" bindtap="onDisagree">拒绝</button>
+      <button
+        id="{{agreeBtnId}}"
+        class="btn-primary agree-btn"
+        open-type="agreePrivacyAuthorization"
+        bindagreeprivacyauthorization="onAgree"
+      >同意</button>
+    </view>
+  </view>
+</view>
